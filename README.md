@@ -24,6 +24,8 @@ Full details of the release notes can be viewed on [GitHub](https://github.com/B
 
 All custom `JsonConverter` types are in namespace `ByteDev.Json.SystemTextJson.Serialization`.
 
+---
+
 ### StringToDateTimeJsonConverter
 
 Converter allows a JSON string representation of a date time to be automatically converted to a `DateTime` and back again using the supplied date time format string.
