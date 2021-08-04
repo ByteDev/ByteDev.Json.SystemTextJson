@@ -71,6 +71,17 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
                 var ex = Assert.Throws<JsonException>(() => _ = _sut.Deserialize<TestEnumEntity>(JsonNotNumberOrStringValue));
                 Assert.That(ex.Message, Is.EqualTo("The JSON value could not be converted to Enum: 'ByteDev.Json.SystemTextJson.UnitTests.Serialization.LightSwitch'. Value was not a number or string."));
             }
+
+            [TestCase(JsonNotNumberOrStringValue)]
+            [TestCase(JsonStringNoMatch)]
+            public void WhenDefaultEnumValueProvided_AndJsonValueNotValid_ThenSetDefault(string json)
+            {
+                var sut = new EnumJsonConverter<LightSwitch>(LightSwitch.Faulty);
+
+                var result = sut.Deserialize<TestEnumEntity>(json);
+
+                Assert.That(result.HouseLights, Is.EqualTo(LightSwitch.Faulty));
+            }
         }
 
         [TestFixture]

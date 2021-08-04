@@ -10,11 +10,29 @@ namespace ByteDev.Json.SystemTextJson.Serialization
     /// </summary>
     public class EnumJsonConverter<TEnum> : JsonConverter<TEnum> where TEnum : struct, Enum
     {
+        private readonly TEnum? _defaultEnumValue;
+
         /// <summary>
         /// Indicates on write (serialize) how the enum value should be represented in the JSON.
         /// Default is by number value.
         /// </summary>
         public EnumValueType WriteEnumValueType { get; set; } = EnumValueType.Number;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.Json.SystemTextJson.Serialization.EnumJsonConverter{TEnum}" /> class.
+        /// </summary>
+        public EnumJsonConverter() : this(null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.Json.SystemTextJson.Serialization.EnumJsonConverter{TEnum}" /> class.
+        /// </summary>
+        /// <param name="defaultEnumValue">This value will be returned when either a JSON value is not a number or string or a JSON string cannot be successfully mapped to a enum value.</param>
+        public EnumJsonConverter(TEnum? defaultEnumValue)
+        {
+            _defaultEnumValue = defaultEnumValue;
+        }
 
         public override TEnum Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -27,6 +45,9 @@ namespace ByteDev.Json.SystemTextJson.Serialization
                     return ReadString(reader);
 
                 default:
+                    if (_defaultEnumValue.HasValue)
+                        return _defaultEnumValue.Value;
+
                     throw new JsonException($"The JSON value could not be converted to Enum: '{typeof(TEnum)}'. Value was not a number or string.");
             }
         }
@@ -55,7 +76,7 @@ namespace ByteDev.Json.SystemTextJson.Serialization
             return (TEnum)Enum.Parse(typeof(TEnum), jsonNumber.ToString(), false);
         }
 
-        private static TEnum ReadString(Utf8JsonReader reader)
+        private TEnum ReadString(Utf8JsonReader reader)
         {
             var jsonString = reader.GetString();
 
@@ -76,6 +97,9 @@ namespace ByteDev.Json.SystemTextJson.Serialization
                     }
                 }
             }
+
+            if (_defaultEnumValue.HasValue)
+                return _defaultEnumValue.Value;
 
             throw new JsonException($"The JSON string value does match any value in Enum: '{typeof(TEnum)}'.");
         }
