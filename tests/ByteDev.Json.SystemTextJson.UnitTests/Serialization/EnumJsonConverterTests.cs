@@ -82,6 +82,24 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
 
                 Assert.That(result.HouseLights, Is.EqualTo(LightSwitch.Faulty));
             }
+
+            [Test]
+            public void WhenTwoEnumConverters_ThenSetCorrectValue()
+            {
+                const string json = "{" +
+                                    "\"room_color\":\"Green\"," +
+                                    "\"lights\":\"switchOff\"" +
+                                    "}";
+
+                var options = new JsonSerializerOptions();
+                options.Converters.Add(new EnumJsonConverter<LightSwitch>(LightSwitch.Faulty));
+                options.Converters.Add(new EnumJsonConverter<Color>(Color.Unknown));
+
+                var result = JsonSerializer.Deserialize<TestTwoEnumEntity>(json, options);
+
+                Assert.That(result.RoomColor, Is.EqualTo(Color.Green));
+                Assert.That(result.HouseLights, Is.EqualTo(LightSwitch.Off));
+            }
         }
 
         [TestFixture]
