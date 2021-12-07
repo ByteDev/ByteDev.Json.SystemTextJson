@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.Json;
 using ByteDev.Json.SystemTextJson.Serialization;
+using ByteDev.Json.SystemTextJson.UnitTests.TestEntities;
 using NUnit.Framework;
 
 namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization

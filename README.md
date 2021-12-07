@@ -172,3 +172,34 @@ var newJson = JsonSerializer.Serialize(obj, options);
 
 // newJson == json
 ```
+
+---
+
+### StringToBoolJsonConverter
+
+Converter allows a JSON string to be automatically converted to a .NET `Boolean`.
+
+```csharp
+public class BoolEntity
+{
+    [JsonPropertyName("myBool")]
+    public bool MyBool { get; set; }
+}
+```
+
+```csharp
+var converter = new StringToBoolJsonConverter("N", "Y");
+
+var options = new JsonSerializerOptions();
+options.Converters.Add(converter);
+
+string json = "{\"myBool\":\"Y\"}";
+
+var obj = JsonSerializer.Deserialize<BoolEntity>(json, options);
+
+// obj.MyBool == true
+
+var newJson = JsonSerializer.Serialize(obj, options);
+
+// newJson == json
+```

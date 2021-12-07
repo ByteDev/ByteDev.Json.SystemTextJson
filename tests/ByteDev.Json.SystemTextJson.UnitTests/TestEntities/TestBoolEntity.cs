@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
+namespace ByteDev.Json.SystemTextJson.UnitTests.TestEntities
 {
     public class TestBoolEntity
     {

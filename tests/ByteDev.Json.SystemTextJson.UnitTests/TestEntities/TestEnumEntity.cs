@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using ByteDev.Json.SystemTextJson.Serialization;
 
-namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
+namespace ByteDev.Json.SystemTextJson.UnitTests.TestEntities
 {
     public enum LightSwitch
     { 

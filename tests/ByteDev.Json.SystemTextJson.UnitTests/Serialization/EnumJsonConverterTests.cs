@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using ByteDev.Json.SystemTextJson.Serialization;
+using ByteDev.Json.SystemTextJson.UnitTests.TestEntities;
 using NUnit.Framework;
 
 namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
@@ -62,14 +63,14 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
             public void WhenJsonEnumIsString_AndDoesNotMatch_ThenThrowException()
             {
                 var ex = Assert.Throws<JsonException>(() => _ = _sut.Deserialize<TestEnumEntity>(JsonStringNoMatch));
-                Assert.That(ex.Message, Is.EqualTo("The JSON string value does match any value in Enum: 'ByteDev.Json.SystemTextJson.UnitTests.Serialization.LightSwitch'."));
+                Assert.That(ex.Message, Is.EqualTo("The JSON string value does match any value in Enum: 'ByteDev.Json.SystemTextJson.UnitTests.TestEntities.LightSwitch'."));
             }
 
             [Test]
             public void WhenJsonEnumIsNotNumberOrString_ThenThrowException()
             {
                 var ex = Assert.Throws<JsonException>(() => _ = _sut.Deserialize<TestEnumEntity>(JsonNotNumberOrStringValue));
-                Assert.That(ex.Message, Is.EqualTo("The JSON value could not be converted to Enum: 'ByteDev.Json.SystemTextJson.UnitTests.Serialization.LightSwitch'. Value was not a number or string."));
+                Assert.That(ex.Message, Is.EqualTo("The JSON value could not be converted to Enum: 'ByteDev.Json.SystemTextJson.UnitTests.TestEntities.LightSwitch'. Value was not a number or string."));
             }
 
             [TestCase(JsonNotNumberOrStringValue)]

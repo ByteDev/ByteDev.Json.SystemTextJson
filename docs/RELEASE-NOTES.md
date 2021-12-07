@@ -1,6 +1,6 @@
 # Release Notes
 
-## 1.2.0 - ?
+## 1.2.0 - 07 December 2021
 
 Breaking changes:
 - (None)
@@ -8,6 +8,7 @@ Breaking changes:
 New features:
 - Added `StringExtensions.IsJson` method.
 - Added `NumberToBoolJsonConverter` class.
+- Added `StringToBoolJsonConverter` class.
 
 Bug fixes / internal changes:
 - (None)

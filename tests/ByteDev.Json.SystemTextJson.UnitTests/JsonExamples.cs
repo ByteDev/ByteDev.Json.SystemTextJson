@@ -20,5 +20,10 @@
         public const string JsonNumberZero = "{\"myBool\":0}";
         public const string JsonNumberOne = "{\"myBool\":1}";
         public const string JsonNumberTwo = "{\"myBool\":2}";
+
+        public static string CreateJsonString(string name, string value)
+        {
+            return "{\"" + name + "\":\"" + value + "\"}";
+        }
     }
 }
