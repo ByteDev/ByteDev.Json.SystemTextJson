@@ -16,5 +16,9 @@
         public const string JsonNull = "{\"middlename\":null} ";
 
         public const string JsonTwoProperties = "{ \"MyNumber\": 1, \"MyString\": \"John\" }";
+
+        public const string JsonNumberZero = "{\"myBool\":0}";
+        public const string JsonNumberOne = "{\"myBool\":1}";
+        public const string JsonNumberTwo = "{\"myBool\":2}";
     }
 }

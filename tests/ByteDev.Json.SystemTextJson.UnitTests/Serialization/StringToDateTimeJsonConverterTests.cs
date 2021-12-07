@@ -28,7 +28,7 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
         }
 
         [TestFixture]
-        public class Read : UnixEpochTimeToDateTimeJsonConverterTests
+        public class Read : StringToDateTimeJsonConverterTests
         {
             [Test]
             public void WhenJsonDateTimeProvided_AndJsonValueIsSameFormat_ThenSetDateTime()
@@ -72,7 +72,7 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
         }
 
         [TestFixture]
-        public class Write : UnixEpochTimeToDateTimeJsonConverterTests
+        public class Write : StringToDateTimeJsonConverterTests
         {
             [Test]
             public void WhenDateTimeSet_ThenOutputJsonValueInFormat()

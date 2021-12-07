@@ -7,6 +7,7 @@ Breaking changes:
 
 New features:
 - Added `StringExtensions.IsJson` method.
+- Added `NumberToBoolJsonConverter` class.
 
 Bug fixes / internal changes:
 - (None)

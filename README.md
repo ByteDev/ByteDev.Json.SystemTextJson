@@ -140,3 +140,35 @@ var newJson = JsonSerializer.Serialize(obj, options);
 
 // newJson == json
 ```
+
+---
+
+### NumberToBoolJsonConverter
+
+Converter allows a JSON number (integer) to be automatically converted to a .NET `Boolean`.
+
+```csharp
+public class BoolEntity
+{
+    [JsonPropertyName("myBool")]
+    public bool MyBool { get; set; }
+}
+```
+
+```csharp
+// Optional true/false integer representations params
+var converter = new NumberToBoolJsonConverter();
+
+var options = new JsonSerializerOptions();
+options.Converters.Add(converter);
+
+string json = "{\"myBool\":1}";
+
+var obj = JsonSerializer.Deserialize<BoolEntity>(json, options);
+
+// obj.MyBool == true
+
+var newJson = JsonSerializer.Serialize(obj, options);
+
+// newJson == json
+```
