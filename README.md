@@ -203,3 +203,45 @@ var newJson = JsonSerializer.Serialize(obj, options);
 
 // newJson == json
 ```
+
+---
+
+### StringToGuidJsonConverter
+
+Converter allows a JSON string to be automatically converted to a .NET `System.Guid`.
+
+Supports reading (deserializing) many different representations of Guid strings as well as specifying a write format to use when writing (serializing) to JSON.
+
+```csharp
+public class GuidEntity
+{
+    [JsonPropertyName("myGuid")]
+    public Guid MyGuid { get; set; }
+}
+```
+
+```csharp
+var converter = new StringToGuidJsonConverter("N");
+
+var options = new JsonSerializerOptions();
+options.Converters.Add(converter);
+
+string json = "{\"myGuid\":\"c62a82b35e0d47bf9a12b027ff56d3e3\"}";
+
+var obj = JsonSerializer.Deserialize<GuidEntity>(json, options);
+
+// obj.MyGuid == Guid.Parse("c62a82b3-5e0d-47bf-9a12-b027ff56d3e3")
+
+var newJson = JsonSerializer.Serialize(obj, options) ;
+
+// newJson == json
+```
+
+JSON string write formats currently supported:
+
+```
+"D" = "c62a82b3-5e0d-47bf-9a12-b027ff56d3e3"
+"N" = "c62a82b35e0d47bf9a12b027ff56d3e3"
+"B" = "{c62a82b3-5e0d-47bf-9a12-b027ff56d3e3}"
+"P" = "(c62a82b3-5e0d-47bf-9a12-b027ff56d3e3)"
+```
