@@ -14,8 +14,16 @@ namespace ByteDev.Json.SystemTextJson.Serialization
         private readonly string _falseValue;
         private readonly string _trueValue;
         
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.Json.SystemTextJson.Serialization.StringToBoolJsonConverter" /> class.
+        /// </summary>
+        /// <param name="falseValue">Value to use for false.</param>
+        /// <param name="trueValue">Value to use for true.</param>
         public StringToBoolJsonConverter(string falseValue, string trueValue)
         {
+            if (falseValue == trueValue)
+                throw new ArgumentException("True value cannot be equal to false value.", nameof(trueValue));
+
             _falseValue = falseValue;
             _trueValue = trueValue;
         }

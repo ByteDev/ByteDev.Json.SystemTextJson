@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 
 namespace ByteDev.Json.SystemTextJson
 {
@@ -26,6 +27,40 @@ namespace ByteDev.Json.SystemTextJson
             {
                 return false;
             }
+        }
+
+        internal static string RemoveStartsWith(this string source, string value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+            
+            if (string.IsNullOrEmpty(source))
+                return source;
+
+            if (value == string.Empty)
+                return source;
+
+            if (source.StartsWith(value))
+                return source.Substring(value.Length);
+
+            return source;
+        }
+
+        internal static string RemoveEndsWith(this string source, string value)
+        {
+            if (value == null)
+                throw new ArgumentNullException(nameof(value));
+
+            if (value == string.Empty)
+                return source;
+
+            if (string.IsNullOrEmpty(source))
+                return source;
+
+            if (source.EndsWith(value))
+                return source.Substring(0, source.Length - value.Length);
+
+            return source;
         }
     }
 }

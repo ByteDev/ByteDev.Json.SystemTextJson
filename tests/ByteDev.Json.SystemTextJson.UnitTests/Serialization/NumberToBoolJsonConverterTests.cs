@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using ByteDev.Json.SystemTextJson.Serialization;
 using ByteDev.Json.SystemTextJson.UnitTests.TestEntities;
 using NUnit.Framework;
@@ -14,6 +15,16 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
         public void SetUp()
         {
             _sut = new NumberToBoolJsonConverter();
+        }
+
+        [TestFixture]
+        public class Constructor : NumberToBoolJsonConverterTests
+        {
+            [Test]
+            public void WhenFalseAndTrueValueAreEqual_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => _ = new NumberToBoolJsonConverter(0, 0));
+            }
         }
 
         [TestFixture]

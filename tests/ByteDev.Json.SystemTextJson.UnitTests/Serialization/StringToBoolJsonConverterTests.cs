@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 using ByteDev.Json.SystemTextJson.Serialization;
 using ByteDev.Json.SystemTextJson.UnitTests.TestEntities;
 using NUnit.Framework;
@@ -16,6 +17,16 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
         private readonly string _jsonStringInvalid = JsonExamples.CreateJsonString("myBool", "-");
 
         private StringToBoolJsonConverter _sut;
+
+        [TestFixture]
+        public class Constructor : StringToBoolJsonConverterTests
+        {
+            [Test]
+            public void WhenFalseAndTrueValueAreEqual_ThenThrowException()
+            {
+                Assert.Throws<ArgumentException>(() => _ = new StringToBoolJsonConverter("0", "0"));
+            }
+        }
 
         [SetUp]
         public void SetUp()

@@ -1,5 +1,17 @@
 # Release Notes
 
+## 1.3.0 - ?
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `StringToGuidJsonConverter` class.
+
+Bug fixes / internal changes:
+- `StringToBoolJsonConverter` contructor now throws exception on true and false params being equal.
+- `NumberToBoolJsonConverter` contructor now throws exception on true and false params being equal.
+
 ## 1.2.0 - 07 December 2021
 
 Breaking changes:

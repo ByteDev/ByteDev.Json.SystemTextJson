@@ -14,12 +14,24 @@ namespace ByteDev.Json.SystemTextJson.Serialization
         private readonly int _falseValue;
         private readonly int _trueValue;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.Json.SystemTextJson.Serialization.NumberToBoolJsonConverter" /> class
+        /// using 0 as the false value and 1 as the true value.
+        /// </summary>
         public NumberToBoolJsonConverter() : this(0, 1)
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:ByteDev.Json.SystemTextJson.Serialization.NumberToBoolJsonConverter" /> class
+        /// </summary>
+        /// <param name="falseValue">Value to use for false.</param>
+        /// <param name="trueValue">Value to use for true.</param>
         public NumberToBoolJsonConverter(int falseValue, int trueValue)
         {
+            if (falseValue == trueValue)
+                throw new ArgumentException("True value cannot be equal to false value.", nameof(trueValue));
+
             _falseValue = falseValue;
             _trueValue = trueValue;
         }
