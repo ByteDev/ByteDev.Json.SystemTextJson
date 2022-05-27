@@ -1,5 +1,16 @@
 # Release Notes
 
+## 1.4.0 - 27 May 2022
+
+Breaking changes:
+- (None)
+
+New features:
+- Added `StringToNullableBoolJsonConverter` class.
+
+Bug fixes / internal changes:
+- (None)
+
 ## 1.3.0 - 11 February 2022
 
 Breaking changes:

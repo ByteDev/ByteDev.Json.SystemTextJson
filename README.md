@@ -175,7 +175,7 @@ var newJson = JsonSerializer.Serialize(obj, options);
 
 ---
 
-### StringToBoolJsonConverter
+### StringToBoolJsonConverter & StringToNullableBoolJsonConverter
 
 Converter allows a JSON string to be automatically converted to a .NET `Boolean`.
 
@@ -203,6 +203,12 @@ var newJson = JsonSerializer.Serialize(obj, options);
 
 // newJson == json
 ```
+
+The package also contains the similar converter `StringToNullableBoolJsonConverter`. 
+
+This works in the same way to `StringToBoolJsonConverter` but converts to a .NET Nullable Boolean type. 
+
+The converter's constructor takes an additional third string parameter to represent the null value in JSON.
 
 ---
 

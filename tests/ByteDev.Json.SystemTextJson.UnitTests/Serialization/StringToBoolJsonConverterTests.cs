@@ -18,6 +18,12 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
 
         private StringToBoolJsonConverter _sut;
 
+        [SetUp]
+        public void SetUp()
+        {
+            _sut = new StringToBoolJsonConverter(FalseValue, TrueValue);
+        }
+
         [TestFixture]
         public class Constructor : StringToBoolJsonConverterTests
         {
@@ -26,12 +32,6 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
             {
                 Assert.Throws<ArgumentException>(() => _ = new StringToBoolJsonConverter("0", "0"));
             }
-        }
-
-        [SetUp]
-        public void SetUp()
-        {
-            _sut = new StringToBoolJsonConverter(FalseValue, TrueValue);
         }
 
         [TestFixture]
@@ -66,7 +66,7 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
         public class Write : StringToBoolJsonConverterTests
         {
             [Test]
-            public void WhenSetToFalse_ThenJsonValueZero()
+            public void WhenSetToFalse_ThenReturnJsonFalseValue()
             {
                 var entity = new TestBoolEntity { MyBool = false };
 
@@ -76,7 +76,7 @@ namespace ByteDev.Json.SystemTextJson.UnitTests.Serialization
             }
 
             [Test]
-            public void WhenSetToTrue_ThenJsonValueOne()
+            public void WhenSetToTrue_ThenReturnJsonTrueValue()
             {
                 var entity = new TestBoolEntity { MyBool = true };
 
